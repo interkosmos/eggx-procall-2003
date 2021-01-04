@@ -1,0 +1,142 @@
+/* -*- Mode: text ; Coding: euc-japan -*- */
+/* Time-stamp: <2010-02-25 20:36:36 cyamauch> */
+
+=============================================================================
+               Easy and Gratifying Graphics library for X11
+                       EGGX / ProCALL  version 0.94
+=============================================================================
+
+●インストール方法
+
+・Makefile を選んで編集
+
+    Makefile をインストールする OS にあわせて選んでください．デフォルトでは
+  ほとんどの 32-bit PC UNIX系 OS で使える Linux 用のものが設定されています．
+  必要に応じて，以下のようにシンボリックリンクを変更します．
+
+      % ln -sf Makefile.linux Makefile   (Linux, MacOSX, *BSD, Cygwin など)
+      % ln -sf Makefile.linux64 Makefile (64-bit Linux)
+      % ln -sf Makefile.sun Makefile     (Solaris)
+      % ln -sf Makefile.sun64 Makefile   (64-bit Solaris)
+      % ln -sf Makefile.sgi Makefile     (sgi[o32,n32,64])
+      % ln -sf Makefile.hp Makefile      (HP-UX)
+      % ln -sf Makefile.hp64 Makefile    (64-bit HP-UX)
+      % ln -sf Makefile.old Makefile     (古い OS 用)
+
+    NetBSD や MacOSX で，動作中に ps コマンドのエラーが出る場合は，次のように
+  して Makefile.netbsd をお使いください．
+
+      % ln -sf Makefile.netbsd Makefile  (NetBSD,MacOSX)
+
+    Xinerama をお使いの場合は，Makefile の
+
+      #LLINKS = -leggx -lX11 -lXinerama -lm
+      #XDEFS = -DUSE_XINERAMA
+
+  の部分を有効にしてください．EGGX/ProCALL で開くウィンドゥの最大サイズの制限
+  を最小のディスプレイサイズにあわせてくれるようになります．
+
+    Makefileの IINC, LLIB を環境にあわせて変更してください．64-bit HP-UX, 64-
+  bit Solaris については，渡辺様が用意してくださった INSTALL_hp64_sun64.ja も
+  あわせて御覧ください．
+
+    Makefile の CC, USERCC, USERFC 等の部分を確認し，必要に応じて修正してくだ
+  さい．EGGX/ProCALL をビルドする時のコンパイラと，ユーザが使うコンパイラを別
+  々に指定できます．
+
+    EGGXのライブラリファイル，ヘッダファイルはデフォルトでは /usr/local/lib/,
+  /usr/local/include/ にインストールする設定になっています．これは Makefile 
+  の PREFIX，INCDIR，LIBDIR，BINDIR で指定します(ほとんどの場合は，PREFIX の
+  変更だけで十分だと思います)．
+
+    root になれない場合は /usr/local/ 以下にはインストールできないと思います
+  が，その場合はユーザのホームディレクトリ上の 1 つのディレクトリに EGGX のコ
+  ンパイル用スクリプト，ライブラリファイル，ヘッダファイルをまとめて入れる事
+  をお勧めします．このようにしておくと，コンパイル用スクリプトは，インクルー
+  ドファイル，ヘッダファイルのパスを自動的に設定するようになっていて，この場
+  合は Makefile の PREFIX 等の修正は不要です．
+
+・make します．
+
+  % make
+
+・egg , eggx*.h と libeggx.a をコピーします．
+
+    root になれる場合，su で root になり，make install します．
+
+    [例 : root になれる場合]
+      % su
+      # make install
+
+    root になれない場合は libeggx.a, eggx*.h, egg を同一ディレクトリにコピー
+  してください．
+
+    [例 : root になれない場合]
+    ホーム上の EGGX というディレクトリに入れる例を示します．
+      % mkdir ~/EGGX
+      % cp libeggx.a eggx*.h egg ~/EGGX/.
+    ※コンパイルには egg コマンドを使いますが，この場合は ~/EGGX に PATH を通
+    すか，フルパスで実行してください．
+
+  以上で完了です．
+
+    コンパイルコマンド egg はシェルスクリプトですので，インストールした後にエ
+  ディタで修正が可能です．
+
+    [パッケージャの方へ]
+      $ make PREFIX=/usr
+      $ make install PREFIX=/usr DESTDIR=`pwd`/pkg_dir
+    のようにすると，簡単にバイナリパッケージが作れます．
+
+・動作テスト
+
+    ターミナルから，次のようにしてください．
+      % cd examples_tutorial
+      % make clock
+      % ./clock &
+
+  簡単なデジタル時計が現れれば，EGGX のビルドは成功です．
+
+    さらに，基本的な日本語フォントが表示できるかを，次のようにテストします．
+
+      [EUC環境の場合]
+      % cd examples.euc
+      % make nihongo
+      % ./nihongo
+
+      [UTF-8環境の場合]
+      % cd examples.utf-8
+      % make nihongo
+      % ./nihongo
+
+  14，16，24ドットで文字列が表示されればOKです．
+    うまく表示されない場合は，Xサーバのフォントのインストールが不十分ですので
+  フォントをインストールしてください．
+
+
+●EGGXのための補助ツールについて
+
+  tools ディレクトリに，EGGX のための補助ツールを用意しています．
+  「make」だけでコンパイルが完了します．
+
+  ・ppmtoh.c
+
+    putimg24() 関数の最後の3つの引数に与えるための値と配列を ppm ファイルから
+  作成し，標準出力へ出力します．
+    $ ./ppmtoh plamo_banner.ppm | less
+  のようにすると，出力された内容の確認が容易です．
+
+  ・xpmtoh.c
+
+    背景透過処理が可能な putimg24m() 関数の最後の3つの引数に与えるための値と
+  配列を xpm ファイルから作成し，標準出力へ出力します．
+    $ ./xpmtoh plamo_banner.xpm | less
+  のようにすると，出力された内容の確認が容易です．
+    これを利用するには，netpbm のインストールが必要です．
+
+
+●連絡先
+
+  cyamauch@ir.isas.jaxa.jp
+
+  バグ報告，要望などお待ちしております．

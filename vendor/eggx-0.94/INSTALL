@@ -1,0 +1,108 @@
+
+=============================================================================
+               Easy and Gratifying Graphics library for X11
+                       EGGX / ProCALL  version 0.94
+=============================================================================
+
+* How to install the program:
+  - Modifying a suitable Makefile
+    Choose a suitable Makefile that supports your operating system.
+    By default, Makefile for Linux supporting most versions of 32-bit PC UNIX
+    OS is set.
+    Create a symbolic link as necessary as shown below:
+
+      % ln -sf Makefile.linux Makefile   (Linux, MacOSX, *BSD, Cygwin, etc.)
+      % ln -sf Makefile.linux64 Makefile (64-bit Linux)
+      % ln -sf Makefile.sun Makefile     (Solaris)
+      % ln -sf Makefile.sun64 Makefile   (64-bit Solaris)
+      % ln -sf Makefile.sgi Makefile     (sgi[o32,n32,64])
+      % ln -sf Makefile.hp Makefile      (HP-UX)
+      % ln -sf Makefile.hp64 Makefile    (64-bit HP-UX)
+      % ln -sf Makefile.old Makefile     (for old OS)
+
+    When an error by the ps command occurs on NetBSD or MacOSX, use
+    Makefile.netbsd as shown below:
+
+      % ln -sf Makefile.netbsd Makefile  (NetBSD,MacOSX)
+
+    If Xinerama is running, uncomment the lines shown below in Makefile:
+
+      #LLINKS = -leggx -lX11 -lXinerama -lm
+      #XDEFS = -DUSE_XINERAMA
+
+    The maximum window size opened by EGGX and ProCALL wil be set to the
+    minimum display size.
+
+    Modify IINC and LLIB in Makefile according to your system.
+
+    Modify CC, USERCC, and USERFC in Makefile if necessary.  The compilers
+    for building EGGX/ProCALL and for user's programs can be specified
+    separately.  The library and header files of EGGX are installed to
+    /usr/local/lib/ and /usr/local/include/, respectively, by default.
+    These paths can be changed by modifying PREFIX, INCDIR, LIBDIR, and
+    BINDIR.  It is enough to modify PREFIX only in most cases.
+
+    If you do not have a root authority, files cannot be written under
+    /usr/local.  In this case, it is recommended to store all scripts for
+    compile, library and header files to a directory under the user's home
+    directory.  In this way, scripts for compile set the paths for include
+    and header files automatically.  Modifying PREFIX, etc. in Makefile is
+    not necessary.
+
+* Make to compile 
+  To compile the library, type the following command:
+    % make
+
+* Copy egg, eggx*.h, and libeggx.a
+  (Example 1: with a root authority)
+  If you have a root authority, switch to root with the su command and type
+  "make install".
+    % su
+    # make install
+
+  (Example 2: without a root authority)
+  If you do not have a root authority, copy egg, eggx*.h, and libeggx.a to a
+  directory.  An example of storing those files to ~/EGGX is shown below:
+    % mkdir ~/EGGX
+    % cp libeggx.a eggx*.h egg ~/EGGX/.
+    Note: The egg command is used to compile programs. In this case, add
+          "~/EGGX" to PATH or execute it with the absolute path.
+
+  This is the end of the installation.  The compile-command egg is the shell
+  script and it can be modified with an editor after installation.
+
+  (For packagers)
+  To make a binary package easily, run the make command with some options:
+    $ make PREFIX=/usr
+    $ make install PREFIX=/usr DESTDIR=`pwd`/pkg_dir
+
+* Operating test
+  To check the operation, type the following commands:
+    % cd examples_tutorial
+    % make clock
+    % ./clock &
+
+  If a simple digital clock is displayed, the build of EGGX is successfully
+  done.
+
+* Support tools for EGGX
+  There are support tools for EGGX in the tools directory.
+  Only "make" is required to compile them.
+
+  - ppmtoh.c
+    This tool makes the value and the array for arguments of the function
+    gputimage() from the ppm file and prints them to stdout.  To check the 
+    output, type the following commands:
+      $ ./ppmtoh plamo_banner.ppm | less
+
+  - xpmtoh.c
+    This tool makes the value and the array for arguments of the function
+    gputimage() from the xpm file and prints them to stdout.  This tool
+    supports background-penetration-processing.  To check the output, type
+    the following commands:
+      $ ./xpmtoh plamo_banner.xpm | less
+    This tool requires netpbm.
+
+* Authors
+  If you find a bug or request some improvement, please contact us:
+  cyamauch@ir.isas.jaxa.jp

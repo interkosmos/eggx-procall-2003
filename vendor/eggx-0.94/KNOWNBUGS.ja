@@ -1,0 +1,15 @@
+/* -*- Mode: text ; Coding: euc-japan -*- */
+/* Time-stamp: <2010-01-30 21:06:32 cyamauch> */
+
+=====================================================
+  Easy and Gratifying Graphics library for X11
+  EGGX / ProCALL  既知の不具合
+=====================================================  
+
+・Version 0.90 で Xlib の FontSet のメモリリーク対策
+  をしました．これにより，gsetfontset関数でフォントを
+  切り替えた時のメモリリーク問題は解消しました．
+  ただし，gcloseall() をする時，FontSet まわりも開放
+  するようにしていますが，たぶん完全には開放されませ
+  ん．まぁ，gcloseall() を連発する事はないと思うので，
+  実際に問題になる事はないと思います…

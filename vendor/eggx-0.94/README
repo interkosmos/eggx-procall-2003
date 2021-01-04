@@ -1,0 +1,68 @@
+
+=============================================================================
+               Easy and Gratifying Graphics library for X11
+                       EGGX / ProCALL  version 0.94
+=============================================================================
+
+* Preface
+  EGGX and ProCALL are X11 graphics libraries designed with ultimate
+  simplicity.  You can enjoy 2-D graphics easily with the nostalgic BASIC-
+  style functions.
+
+  It was named PROCALL at the beginning of development (around 1999) as this
+  library was compatible with API for FORTRAN called Pro-FORTRAN.  After some
+  function enhancements, the functions in C no longer look like those in Pro-
+  FORTRAN. We have divided this library into two libraries as shown below:
+
+  - Functions in C: EGGX
+  - Subroutines in FORTRAN: ProCALL
+
+  The name "EGG" derives from the usage of elementary features in Xlib and
+  also our hope that "egg" beginners of programming can draw a picture and
+  create a game with this library.
+
+  The APIs of EGGX allow you to create AfterStep or WindowMaker applets 
+  easily.  For example, simple applets like a digital clock can be created
+  by only a few dozen steps. (See plamoclock.c in examples_tutorial.)  It may
+  be fun to create original applets using EGGX.
+
+  We hope that EGGX/ProCALL can be a tool for bringing up a lot of "eggs".
+
+* How to install
+  See INSTALL.
+
+* Support tools
+  See INSTALL.
+
+* Sample codes
+  See EXAMPLES.
+
+* Manual
+  See the user's guide eggx_procall.pdf.  Simple tutorials and detailed
+  references of functions are included.
+  Visit the EGGX and ProCALL Web site:
+  http://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/
+
+* Conventions of function names
+  After EGGX version 0.80, the prefix of all function (symbol) names is
+  "eggx_".  If it is gopen(), the name is eggx_gopen().  By including eggx.h,
+  all functions are renamed like "#define gopen eggx_gopen" by macro 
+  definition, and they can be used as functions of EGGX in a straightforward
+  manner.
+
+  In a large-scale software development, however, this macro definition for
+  EGGX may cause a trouble.  Specifically, a member name of a structure may
+  be replaced unexpectedly by the macro definition.  To avoid such troubles,
+  it is recommended that you include eggxlib.h and specify original function
+  names (eggx_...) in a large-scale software development.
+
+* Notes
+  Use of the X server with over 16bpp is strongly recommended.  With 8 bpp,
+  some functions do not work.
+  For the X server with more than one Visual, EGGX and ProCALL open a window
+  with TrueColor if TrueColor Visual is available. (It is OK if the default
+  setting is PseudoColor.)
+
+* Authors
+  If you find a bug or request some improvement, please contact us:
+  cyamauch@ir.isas.jaxa.jp

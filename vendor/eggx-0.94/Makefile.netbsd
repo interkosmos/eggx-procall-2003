@@ -1,0 +1,126 @@
+#EGGX/ProCALL をビルドする時の C コンパイラ
+CC    = gcc
+
+CFLAGS = -O2 -Wall
+
+DESTDIR =
+
+#ユーザが利用する C コンパイラ，フラグ
+USERCC   = gcc
+USERCCFLAGS = -O2 -Wall
+#USERCC   = icc
+
+#ユーザが利用する FORTRAN コンパイラ，フラグ
+USERFC   = gfortran
+#USERFC   = g77
+#USERFC   = f77
+USERFCFLAGS = -O2 -Wall
+#USERFC   = ifc
+
+#X11/Xlib.h のあるディレクトリ
+IINC  = -I/usr/X11R7/include -I/usr/X11R6/include
+#IINC  = -I/usr/openwin/include
+#IINC  = -I/usr/local/X11R6/include
+#IINC  = -I/usr/include
+
+#libX11.a libX11.so のあるディレクトリ
+LLIB  = -L/usr/X11R7/lib -L/usr/X11R6/lib
+#LLIB  = -L/usr/X11R7/lib64 -L/usr/X11R6/lib64
+#LLIB  = -L/usr/openwin/lib
+#LLIB  = -L/usr/local/X11R6/lib
+#LLIB  = -L/usr/lib
+
+PREFIX = /usr/local
+
+INCDIR = $(PREFIX)/include
+LIBDIR = $(PREFIX)/lib
+#LIBDIR = $(PREFIX)/lib64
+BINDIR = $(PREFIX)/bin
+
+#root になれない場合は以下の 2 行は # でコメントにする
+LOCALINC = -I$(INCDIR)
+LOCALLIB = -L$(LIBDIR)
+
+#root になれない場合の設定
+#(eggx*.h, libeggx.a, egg を同一ディレクトリに入れる場合は
+# LOCALINC LOCALLIB は空でもよい)
+#LOCALINC =
+#LOCALLIB =
+#LOCALINC = -I${HOME}/EGGX
+#LOCALLIB = -L${HOME}/EGGX
+#LOCALINC = -I${HOME}/include
+#LOCALLIB = -L${HOME}/lib
+
+LLINKS = -leggx -lX11 -lm
+#LLINKS = -leggx -lX11 -lXinerama -lm
+
+#for Xinerama extension (Native Xserver)
+#XDEFS = -DUSE_XINERAMA
+
+#for Solaris,IRIX
+#VDEFS = -DNO_ISINF
+
+#for the system without mkstemp
+#TDEFS = -DNO_MKSTEMP
+
+#for the system without usleep
+#UDEFS = -DNO_USLEEP
+
+#for the system without vsnprintf
+#PDEFS = -DNO_VSNPRINTF
+
+##CFLAGS = -O2 -Wreturn-type -Wswitch -Wformat -Wuninitialized -Wparentheses
+
+DEFS = $(VDEFS) $(TDEFS) $(UDEFS) $(PDEFS) $(XDEFS) -DANOTHERPS
+
+all:: _xslave_ mkexheader exec_xslave.h lib egg
+
+install:: lib egg
+	if [ ! -d $(DESTDIR)$(LIBDIR) ];then sh install-sh -d $(DESTDIR)$(LIBDIR); fi
+	if [ ! -d $(DESTDIR)$(INCDIR) ];then sh install-sh -d $(DESTDIR)$(INCDIR); fi
+	if [ ! -d $(DESTDIR)$(BINDIR) ];then sh install-sh -d $(DESTDIR)$(BINDIR); fi
+	sh install-sh -m 644 libeggx.a $(DESTDIR)$(LIBDIR)
+	sh install-sh -m 644 eggx*.h $(DESTDIR)$(INCDIR)
+	sh install-sh -m 755 egg $(DESTDIR)$(BINDIR)
+	ranlib $(DESTDIR)$(LIBDIR)/libeggx.a
+
+.c.o:   ; $(CC) $(CFLAGS) $(IINC) $(DEFS) -c $*.c
+
+_xslave_: _xslave_.o _eggx_scrollbar.o
+	$(CC) $(CFLAGS) _xslave_.o _eggx_scrollbar.o -o _xslave_ $(LLIB) -lX11
+
+mkexheader: mkexheader.o
+	$(CC) $(CFLAGS) mkexheader.o -o mkexheader
+
+exec_xslave.h: mkexheader _xslave_
+	./mkexheader _xslave_ > exec_xslave.h
+
+eggx_base.o: exec_xslave.h
+
+lib:: eggx_base.o eggx_color.o
+	ar cruv libeggx.a eggx_base.o eggx_color.o
+	ranlib libeggx.a
+
+egg:: egg.sh
+	cat egg.sh > egg
+	rm -f egg.t
+	for i in USERCC "x@@$(USERCC)" USERFC "x@@$(USERFC)" \
+	  USERCCFLAGS "x@@$(USERCCFLAGS)" USERFCFLAGS "x@@$(USERFCFLAGS)" \
+	  IINC "x@@$(IINC)" LLIB "x@@$(LLIB)" LOCALINC "x@@$(LOCALINC)" \
+	  LOCALLIB "x@@$(LOCALLIB)" LLINKS "x@@$(LLINKS)" ; do { \
+	  if [ -f egg.t ] ; then \
+	    if [ "$$i" = "x@@" ] ; then \
+	      cat egg.t | sed -e "s|@@@TARGET@@@||" > egg ; \
+	    else \
+	      cat egg.t | sed -e "s|@@@TARGET@@@|$$i|" | sed -e 's|x@@||' > egg ; \
+	    fi ; \
+	    rm -f egg.t ; \
+	  else \
+	    cat egg | sed -e "s|@$$i@|@@@TARGET@@@|" > egg.t ; \
+	  fi ; \
+	} done
+	chmod 755 egg
+
+clean::
+	rm -f *.o *.exe egg egg.t libeggx.a _xslave_ mkexheader exec_xslave.h
+

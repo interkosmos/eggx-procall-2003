@@ -1,0 +1,21 @@
+
+=============================================================================
+               Easy and Gratifying Graphics library for X11
+                       EGGX / ProCALL  version 0.94
+=============================================================================
+
+* Documentations included in this package
+
+  - README (plain text)
+    Introduction of EGGX/ProCALL.
+
+  - INSTALL (plain text)
+    Installation guide.
+
+  - EXAMPLES (plain text)
+    Information of example codes in this package.
+
+  - eggx_procall.pdf (pdf)
+    User's guide.
+    See this PDF file to know details of EGGX functions.
+

@@ -1,0 +1,235 @@
+/* -*- Mode: text ; Coding: euc-japan -*- */
+/* Time-stamp: <2015-09-05 20:29:56 cyamauch> */
+
+	-- ChangeLog --
+
+	ピックスマップを使ってアイコン化しても大丈夫なように．
+	ついでに layer 機能を追加
+	画像の save に対応
+	atexit できちんとXサーバと断線するようにした．
+	msleep を追加
+	snprintf がない場合でも使えるようにした．
+	24bit イメージのクライアントからの一括転送をできるようにした．
+	(0.51)
+
+	Expose イベントのチェックをタイマー割り込みではなく子プロセスで
+	XNextEvent で受けるようにした．
+	(0.52)
+
+	XFlush() の回数を減らした．
+	_xslave_ を libpro.a に取り込んだ．
+	(0.53)
+
+	コーディングの見直し．
+	(0.54)
+
+	16bpp な X サーバでも putimg24 が使えるように修正．
+	キー入力関数 inkeydollar を追加．
+	WMNormalHints を追加．
+	gopen の後すぐに layer を呼ぶと子プロセスが死ぬバグを修正．
+	C の winname 関数を可変長引数に．
+	(0.55)
+
+	C の drawstr 関数を可変長引数に．
+	C の imgsave 関数を可変長引数に．
+	(0.60)
+
+	割り込み(Ctrl+C 等)時の不具合を修正．
+	(0.61)
+
+	親子関係のバグを修正．
+	(0.62)
+
+	関数名を整理．
+	  - line(…,PSET) → マクロ pset(…) 追加
+	  - plot 関数  → line に名称変更
+	  - arohd 関数 → drawarrow に名称変更
+	  - imgsave 関数/サブルーチン → saveimg に名称変更
+	  - clsx 関数 → gclr に名称変更
+	  - clsc 関数 → tclr に名称変更
+	以前のテンポラリファイルが残っている場合削除するようにした．
+	(0.65)
+
+	コーディングの見直し．
+	drawarc,fillarc 関数,サブルーチンの引数の変更．
+	xcirc1 サブルーチン削除．
+	xarc サブルーチン削除．
+	drawarc サブルーチン新設．
+	drawcirc サブルーチン新設．
+	circle 関数を新設．
+	orgeometry 関数を削除．
+	テンポラリファイル処理まわりの修正．
+	copylayer 関数新設．
+	gsetborder 関数，gsetbgcolor 関数を新設．
+	gsetinitialXXX 関数群を新設．
+	ドックアプリ用設定を可能にした．
+	(0.70)
+
+	カラー生成用の makecolor 関数を新設．
+	(0.71)
+
+	XCopyArea を使わないようにした．
+	マウス入力関数 ggetxpress 関数を新設．
+	(0.72)
+
+	フォントセットの描画に対応．
+	(0.73)
+
+	FORTRAN のサブルーチン名の整理．
+	ggetdisplayinfo 関数を新設．
+	saveimg 関数が ImageMagick の convert に対応．
+	(0.74)
+
+	複数の Visual を持つ X サーバに対応
+	(デフォルトが PseudoColor でも TrueColor で窓を開くように)．
+	16bpp の場合に saveimg() で保存した画像がズレる不具合を修正．
+	(0.75)
+
+	Linux/Alpha に対応．
+	(0.76)
+
+	細かなバグ修正とエラーチェックの追加．
+	(0.77)
+
+	コンパイルコマンド egg をシェルスクリプトにした．
+	長いプログラム名の時に，Window のタイトル表示が一部省略されないように
+	した．
+	(0.78)
+
+	スクリプト egg を若干修正 & sample ディレクトリの Makefile を作成．
+	# thanks > 薮＠大阪府立大学さま
+	(0.78r1)
+
+	スクリプト egg を若干修正．
+	(0.78r2)
+
+	NetBSD に対応．
+	(0.78r3)
+
+	# thanks > Yasuhide Yokoyama さま
+	HP-UX,HP64,Sun64 用 Makefile,解説を追加
+	# thanks > 渡辺 さま
+	Mac OS X の場合の Makefile の解説ミスを修正
+	# thanks > 小川和律 さま
+	drawstr() での Seg.Fault を修正
+	# thanks > 小渡 さま
+	cygwin, X on Windows への対応．
+	(0.79)
+
+	rtoc_() のバグを修正
+	実際の関数名はすべて eggx_ から始まる名前に統一．
+	(0.80)
+
+	va_start() va_end() の使い方がマズかったので修正．
+	(0.81)
+
+	ggetevent() 関数を追加．
+	(0.83)
+
+	フォントが見つからない時にSEGVしてしまうバグを修正．
+	(0.84)
+
+	gsetnonblock() 関数を追加．
+	newhsvcolor() 関数を追加．Thanks to 安田様(京都産業大学) 
+	(0.85)
+
+	C++ の場合，ヘッダファイルで extern "C" が有効になるようにした．
+	月面着陸ゲームを収録．Thanks to 松田様(東京電機大学) 
+	(0.85r1)
+
+	UTF-8 な環境で日本語が表示できない問題を修正．
+	gcloseall() するとゾンビプロセスができてしまうバグを修正．
+	必要以上に XAllocColor() を呼んで X がメモリを浪費するバグを修正．
+	マニュアルの増補改訂．
+	egg コマンドの g++ 対応．
+	Makefile の不具合修正と改良．
+	sample/ppmtoh.c をちょっと改良．
+	Xlib のフォントセットまわりのメモリリーク対策．
+	drawsym() の各シンボルの大きさのバランスを調整．
+	Cygwinでもウィンドゥのタイトルを自動設定するように改良．
+	newpen() を高速化．
+	フォントのfallbackを強化．
+	drawcirc()，fillcirc()，drawpoly()，drawlines() を追加．
+	drawpts()，drawsyms()，gsetnonflush()，ggetnonflush()，gflush()を追加
+	ggetch()，ggetxpress() の仕様を変更．
+	(0.90 2010/1/31)
+
+	割り込みの利用を最小限化．
+	drawarrow() のバグ修正，描画精度の改善．
+	_xslave_.c のエラー処理の改善，再描画処理の最適化．
+	drawsym()，drawpoly() などの使用描画関数の最適化．
+	「P6」のppmを採用するようにして，saveimg() を高速化．
+	XPMファイルからヘッダファイルを作成する sample/xpmtoh.c を追加．
+	ウィンドゥ1つにつき，レイヤが最大8枚使えるようになった．
+	ウィンドゥ属性に TOPLEFTORIGIN を追加．
+	gscroll() 関数を追加．
+	coordinate() 関数を追加．
+	newlinewidth()，newlinestyle() 関数を追加．
+	putimg24m() を追加 (背景透過処理が可能になった)．
+	ggetevent() で ButtonRelease イベントが拾えるようになった．
+	ggetevent() で MotionNotify の時にもボタンの番号が返るようになった．
+	必要に応じて自動的にスクロールバーがつくようになった．
+	gsetscrollbarkeymask() 関数を追加．
+	Xinerama に対応．
+	GUI付物理系のシミュレーション・コードのセット，9パズルを収録．Thanks
+	to 松田様(東京電機大学)
+	群れのシミュレーションコード，楕円や星等を回転させて描画するサンプル
+	を収録．Thanks to 安田様(京都産業大学)
+	(0.91 2010/2/19)
+
+	API が float，double 両用になった．
+	親子通信用の「見えない窓」を開き，それで全ての通信をするようにした．
+	複数のウィンドゥを開いても，子プロセスは1つで済むようになった．
+	デフォルトの Makefile を使って Cygwin でビルドできるように改良．
+	TECHNICAL.ja を収録．
+	ウィンドゥ属性 TOPLEFTORIGIN を BOTTOMLEFTORIGIN に変更．
+	ggetinitialattributes() 関数を追加．
+	(0.92 2010/2/23)
+
+	XFree86以外のXサーバでは，ブロッキングモードでうまくモーションイベン
+	トが拾えないので，イベント処理を大幅改造．自前でマウスポインタの位置
+	やウィンドゥを検出するコードを追加．
+	ボタンが押された時の grab が処理の妨げになるので，ボタンのイベントは
+	子プロセスから得るように改造．
+	ggetevent() で ButtonRelease イベントのサポート打ち切り．かわりに，
+	EnterNotify，LeaveNotify をちゃんと拾えるようにした．
+	AUTOREDRAW 属性を廃止し，SCROLLBAR 属性を追加．
+	newgcfunction() を追加．
+	drawsym() を改良．
+	readimage()，writeimage()，gputimage()，ggetimage() を追加．
+	(gputimage() は putimg24() と putimg24m() をまとめただけ)
+	gputarea()，gresize() を追加．
+	サイズヒントの処理の問題を修正．
+	16bpp 以上の場合の saveimg() の高速化．
+	balance ゲームの追加 Thanks to 松田様(東京電機大学)
+	GUI付物理系のシミュレーション・コードのセットを20100226版に更新．
+	Thanks to 松田様(東京電機大学)
+	XCopyArea() の問題の修正(XCreateGC() の後に XSetGraphicsExposures()
+        を追加。Thanks to 松田様(東京電機大学)
+	(0.93 2010/3/8)
+
+	readimage(), writeimage() 等で convert を使用する時、一時ファイルを
+	作らないように改良。
+	pnmtops が FlateDecode をサポートするようになっていたので、サンプル
+	コードとマニュアルを更新。
+	GUI付物理系のシミュレーション・コードのセットを20100317版に更新．
+	Thanks to 松田様(東京電機大学)
+	(0.93r1)
+
+	GUI付物理系のシミュレーション・コードのセットを20100328版に更新．
+	Thanks to 松田様(東京電機大学)
+	(0.93r2 2010/3/30)
+
+	英語ドキュメントの整備
+	(0.93r3 2010/4/14)
+
+	GUI付物理系のシミュレーション・コードのセットを20110310版に更新．
+	Thanks to 松田様(東京電機大学)
+	(0.93r4 2011/6/17)
+
+	eggx_tg.h の C++ での問題を修正．
+	(0.93r5 2015/9/5)
+
+	Cygwin/X 1.20.5.0 での問題を修正．コードの安全性に関する改良．
+	eggスクリプトの改良(-oを自動的に追加)．
+	(0.94 2020/9/19)

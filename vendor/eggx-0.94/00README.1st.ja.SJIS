@@ -1,0 +1,34 @@
+
+【注意事項】
+
+  EGGX/ProCALL に付属の日本語テキストファイルとソースコードの文字コードは，
+  日本語 EUC です．次のような閲覧ツールでご覧ください．
+
+  - Linux，MacOSX などの日本語 UTF-8 環境
+    lv，Webブラウザなど．
+
+  - Windows Shift-JIS 環境
+    K2Editor，TeraPad，秀丸エディタ等の EUC 対応のエディタ．
+    Webブラウザなど．
+
+  - Linux，Solaris 等の EUC 環境
+    more 等でそのまま読めます．
+
+
+【収録されているドキュメント】
+
+  - README.ja (日本語テキスト)
+    EGGX の紹介，過去のバージョンとの互換性に関する情報，連絡先
+
+  - INSTALL.ja (日本語テキスト)
+    インストールの方法，補助ツールについての情報
+
+  - EXAMPLES.ja  (日本語テキスト)
+    サンプルプログラムについての情報
+
+  - LICENSE (英語テキスト)
+    ライセンス(GPL)
+
+  - eggx_procall.ja.pdf (日本語pdf)
+    日本語ユーザーズガイドです．
+    EGGX の関数の詳細についてはこの pdf をご覧ください．

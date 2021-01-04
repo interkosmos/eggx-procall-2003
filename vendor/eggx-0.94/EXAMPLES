@@ -1,0 +1,147 @@
+
+=============================================================================
+               Easy and Gratifying Graphics library for X11
+                       EGGX / ProCALL  version 0.94
+=============================================================================
+
+* Sample programs in the examples_game directory
+  Games offered by Professor Namio Matsuda of Tokyo Denki University are
+  included in this directory.
+  To compile them, only "make" is needed.
+
+  - landing
+    This is a moon-landing simulation game.
+    The space ship is accelerated by pressing the space key.  When the
+    velocity of the landing falls below 15, the crew can land safely on the
+    moon.
+
+  - 9 puzzle
+    This is a nostalgic nine puzzle game.
+
+  - balance
+    Drag the cat's hand with a mouse and try not to drop the ball.
+
+
+* Sample programs in the examples_academic directory
+  Academic programs are included in this directory.
+  To compile them, only "make" is needed.
+
+  - simulations directory
+    This directory includes a set of simulation codes in physics.
+    Professor Namio Matsuda of Tokyo Denki University offered these programs.
+    Users can change parameters and various switches using the cool GUI and
+    can visualize the result promptly.  This is very suitable for education.
+    See README.simulation offered by Prof. Matsuda regarding the content.
+    Usage of GUI is described in README.
+
+  - galaxies.c
+    This is a basic simulation program of interactions between the galaxies
+    with test particles.  The results are displayed in real time while
+    computation is in progress.
+    The Runge-Kutta-Gill method is used for computation.
+
+  - mandel.c
+    This displays the famous Mandelbrot set.
+
+  - raynolds_color.c
+    This simulates the flock by algorithm described in Reynolds's paper.
+    Instructor Yutaka Yasuda of Kyoto Sangyo University offered this program.
+
+  - roche.c
+    This visualizes the roche potential in a close binary system using colors
+    and the norm and direction of power around the system using vectors.  The
+    ratio of mass f can be changed by pressing PageUp or Ctrl-B and PageDown
+    or Ctrl-F.  The color pattern and range can be changed by pressing 'c'
+    and with cursor keys, respectively.  The image can be saved by pressing
+    's'.  Press Esc or 'q' to quit this program.
+
+
+* Sample programs in the examples_tutorial directory
+  Tutorial programs are included in this directory.
+  To compile them, only "make" is needed.
+
+  [C language]
+  - clock.c
+    A simple digital clock is displayed.
+
+  - inkey.c
+    This program tests input from the keyboard.
+
+  - loupe.c
+    This is an example of how to implement the loupe function. Give any png
+    file to the argument upon execution. (It's better to try with ginga.png.)
+    Magnifications can be changed by clicking the mouse and the cursor can be
+    changed with the space key.
+
+  - mousetest.c
+    This program tests input from the mouse and keyboard.
+    In operation, you can click anywhere inside the blue window or type any
+    letter from the keyboard.
+
+  - mousetest2.c
+    This is a primitive "drawing by mouse" tool.
+    Bombs are drawn by default setting. After left- clicking the mouse, dots
+    are drawn.
+    This code can be used for handling motion events of the mouse.
+
+  - mousetest3.c
+    This program works in the non-blocking mode.
+    This program has been added since version 0.85.
+    This code can be used for checking input from the mouse or keyboard with
+    animation.
+
+  - plamoclock.c
+    This is a digital clock with an image.
+    This can be a dock application for AfterStep or WindowMaker.
+
+  - putimg24.c
+    This program transfers the banners of PlamoLinux in block from the ppm
+    file and displays them.  This is for 24bpp or 16bpp only.
+    Press Ctrl-c to quit this program.
+
+  - rotate.c
+    This program rotates an ellipse, a rectangle, and a star figure.
+    This is offered by Instructor Yutaka Yasuda of Kyoto Sangyo University
+    and modified partly.
+
+  - sep_colorbars.c
+    This program displays color bars (with a color subtraction feature).
+
+  [FORTRAN language]
+  - FORTRAN/colorbar.f
+    This program draws various color bars using the color-creating subroutine
+    added since version 0.71.  This is practically for 24bpp or 16bpp only.
+    Press any key to quit this program.
+
+  - FORTRAN/mouse.f
+    This program tests input from the mouse and keyboard.
+    In operation, you can click somewhere inside the blue window or type any
+    letter from the keyboard.
+
+  - FORTRAN/fontset.f
+    This program tests drawing in Japanese language.
+    This does not work if the character set of the platform is ja_JP.UTF-8.
+
+* Sample programs in the examples.{euc, utf-8} directory
+  Sample programs for the EUC or UTF-8 character set are included in this
+  directory.  Choose the proper directory according to a user's environment.
+  To compile them, only "make" is needed.
+
+  - nihongo.c
+    This program displays Japanese characters using the most basic Japanese
+    font.  If it is not displayed, users need to install fonts.
+
+  - 2ch.c
+    This program is only used to draw "Monar" and "Gikoneko."
+    To display it properly, the Monar font is needed.  Some characters may be
+    turned into garbage in the environment with the UTF-8 character set.
+
+  - rupin.c
+    This program draws the cartoon character Lupin the Third.
+    The font "-kochi-gothic-medium-r-normal--..." is needed to display it
+    properly.  When the system gets a font via xfs (for example by default
+    setting in Redhat), it cannot display the character smoothly.
+
+* Authors
+  If you find a bug or request some improvement, please contact us:
+  cyamauch@ir.isas.jaxa.jp
