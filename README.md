@@ -4,7 +4,7 @@ library [EGGX/ProCALL](https://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/).
 The EGGX/ProCALL library provides fast and simple drawing routines on Linux,
 Unix, and Cygwin, directly callable from C or FORTRAN 77.
 
-EGGX/ProCALL 2003 is a wrapper around EGGX/ProCALL that provides:
+EGGX/ProCALL 2003 is a wrapper around EGGX/ProCALL that includes:
 
 * Fortran 2003 interfaces to the FORTRAN 77 ProCALL subroutines.
 * Selected Fortran 2003 ISO C binding interfaces to C functions in EGGX that do not have a FORTRAN counterpart.
