@@ -1,13 +1,13 @@
 # EGGX/ProCALL 2003
-A Fortran 2003 module that contains modern interfaces to the free X11 graphics
+Modern Fortran modules that contain interfaces to the free X11 graphics
 library [EGGX/ProCALL](https://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/).
 The EGGX/ProCALL library provides fast and simple drawing routines on Linux,
 Unix, and Cygwin, directly callable from C or FORTRAN 77.
 
 EGGX/ProCALL 2003 is a wrapper around EGGX/ProCALL that includes:
 
-* Fortran 2003 interfaces to the FORTRAN 77 ProCALL subroutines.
-* Selected Fortran 2003 ISO C binding interfaces to C functions in EGGX that do not have a FORTRAN counterpart.
+* Fortran 90 interfaces to the FORTRAN 77 ProCALL subroutines (module `procall`).
+* Selected Fortran 2003 ISO C binding interfaces to C functions in EGGX that do not have a FORTRAN counterpart (module `eggx`).
 * Named parameters of key codes, colour palettes, and output formats.
 
 ## Build Instructions
@@ -53,8 +53,31 @@ $ ./<name>
 ```
 
 ## Documentation
-See the PDF file
+For the official documentation, see the PDF file
 [vendor/eggx-0.94/eggx_procall.pdf](vendor/eggx-0.94/eggx_procall.pdf).
+
+Generate the source code documentation with
+[FORD](https://github.com/cmacmackin/ford). Add FORD with `pip`, for example:
+
+```
+$ python3 -m venv virtual-environment/
+$ source virtual-environment/bin/activate
+$ python3 -m pip install ford
+```
+
+Or, instead, just install the package in your user directory:
+
+```
+$ python3 -m pip install --user ford
+```
+
+Then, run:
+
+```
+$ ford project.md -d ./src
+```
+
+Open `doc/index.html` in a web browser.
 
 ## Coverage
 ### ProCALL
