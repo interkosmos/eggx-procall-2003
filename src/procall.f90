@@ -36,7 +36,7 @@ module procall
     integer, parameter, public :: PROCALL_IDL1_GRN_RED_BLU_WHT         = 19
     integer, parameter, public :: PROCALL_IDL1_RED_TEMPERATURE         = 20
     integer, parameter, public :: PROCALL_IDL1_BLUE_GREEN_RED_YELLOW   = 21
-    integer, parameter, public :: PROCALL_IDL1_STD_GAMME_II            = 22
+    integer, parameter, public :: PROCALL_IDL1_STD_GAMMA_II            = 22
     integer, parameter, public :: PROCALL_IDL1_PRISM                   = 23
     integer, parameter, public :: PROCALL_IDL1_RED_PURPLE              = 24
     integer, parameter, public :: PROCALL_IDL1_GREEN_WHITE_LINEAR      = 25
