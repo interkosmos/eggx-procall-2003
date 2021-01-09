@@ -123,7 +123,7 @@ program main
             ! single pixel. Stars farther away will be darker.
             call makecolor(0, MAX_DEPTH * 1.5, 0.0, stars(i)%z, r, g, b)
             call newrgbcolor(win, r, g, b)
-            call pset(win, points(i)%x, points(i)%y)
+            call pset(win, points(i)%x - 1, points(i)%y - 1)
         end do
 
         ! Copy layer to window and sleep.

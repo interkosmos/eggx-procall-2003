@@ -69,8 +69,8 @@ program main
     call gclr(win)                                      ! Clear screen.
 
     ! Draw tiles (screen size: 20 x 15 tiles).
-    do y = 0, NROWS
-        do x = 0, NCOLUMNS
+    do y = 0, NROWS - 1
+        do x = 0, NCOLUMNS - 1
             ! Default tile.
             n = 1
 

@@ -311,8 +311,8 @@ contains
 
         do while (associated(ptr))
             call fillrect(win, &
-                          real(ptr%x * BLOCK_SIZE), &
-                          real(ptr%y * BLOCK_SIZE), &
+                          real(ptr%x * BLOCK_SIZE - 1), &
+                          real(ptr%y * BLOCK_SIZE - 1), &
                           real(BLOCK_SIZE), &
                           real(BLOCK_SIZE))
             ptr => ptr%next
@@ -321,8 +321,8 @@ contains
         ! Draw food.
         call newpencolor(win, PROCALL_RED)
         call fillrect(win, &
-                      real(world%food%x * BLOCK_SIZE), &
-                      real(world%food%y * BLOCK_SIZE), &
+                      real(world%food%x * BLOCK_SIZE - 1), &
+                      real(world%food%y * BLOCK_SIZE - 1), &
                       real(BLOCK_SIZE), &
                       real(BLOCK_SIZE))
 
