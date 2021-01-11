@@ -31,6 +31,7 @@ $ gfortran -o demo demo.f90 libeggx.a libeggx2003.a -lX11
 ## Examples
 See directory `examples/` for some demo applications:
 
+* **julia** draws the Julia set.
 * **mandelbrot** draws the Mandelbrot set.
 * **peano** draws a [Peano curve](https://rosettacode.org/wiki/Peano_curve).
 * **snake** is a simple implementation of the snake game.

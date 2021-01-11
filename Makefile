@@ -34,13 +34,14 @@ LDLIBS     = $(EGGX_LIB) $(TARGET) -lX11
 ARFLAGS    = rcs
 
 # Examples
+JULIA      = examples/julia/julia
 MANDELBROT = examples/mandelbrot/mandelbrot
 PEANO      = examples/peano/peano
 SNAKE      = examples/snake/snake
 STARFIELD  = examples/starfield/starfield
 TILES      = examples/tiles/tiles
 
-.PHONY: all clean mandelbrot peano snake starfield tiles
+.PHONY: all clean julia mandelbrot peano snake starfield tiles
 
 all: $(TARGET)
 
@@ -53,6 +54,9 @@ $(TARGET): $(EGGX_LIB)
 	$(AR) $(ARFLAGS) $(TARGET) procall.o eggx.o
 
 # Examples
+julia: $(EGGX_LIB) $(TARGET)
+	$(FC) $(FFLAGS) $(LDFLAGS) -o $(JULIA) $(JULIA).f90 $(LDLIBS)
+
 mandelbrot: $(EGGX_LIB) $(TARGET)
 	$(FC) $(FFLAGS) $(LDFLAGS) -o $(MANDELBROT) $(MANDELBROT).f90 $(LDLIBS)
 
@@ -75,6 +79,7 @@ clean:
 	if [ `ls -1 *.mod 2>/dev/null | wc -l` -gt 0 ]; then rm *.mod; fi
 	if [ `ls -1 *.o 2>/dev/null | wc -l` -gt 0 ]; then rm *.o; fi
 	if [ -e $(TARGET) ]; then rm $(TARGET); fi
+	if [ -e $(JULIA) ]; then rm $(JULIA); fi
 	if [ -e $(MANDELBROT) ]; then rm $(MANDELBROT); fi
 	if [ -e $(PEANO) ]; then rm $(PEANO); fi
 	if [ -e $(SNAKE) ]; then rm $(SNAKE); fi

@@ -28,10 +28,10 @@ program main
     call gclr(win)                                  ! Clear drawing area.
 
     do y = 0, WIN_HEIGHT - 1
-        im = -1.5 + real(y) * 3.0 / real(WIN_HEIGHT - 1)
+        im = -1.5 + real(y) * 3.0 / real(WIN_HEIGHT)
 
         do x = 0, WIN_WIDTH - 1
-            re = -2.0 + real(x) * 3.0 / real(WIN_WIDTH - 1)
+            re = -2.0 + real(x) * 3.0 / real(WIN_WIDTH)
             m  = mandelbrot(cmplx(re, im), MAX_ITER, THRESHOLD)
 
             call makecolor(PROCALL_IDL1_PRISM, real(MAX_ITER), 0.0, real(m), r, g, b)
