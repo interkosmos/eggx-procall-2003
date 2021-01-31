@@ -37,6 +37,7 @@ See directory `examples/` for some demo applications:
 * **snake** is a simple implementation of the snake game.
 * **starfield** lets you fly through a starfield.
 * **tiles** draws text and a tileset to screen.
+* **wireframe** renders the 3D model of a Tie-Figher.
 
 Compile all programs with:
 

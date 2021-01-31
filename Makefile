@@ -40,8 +40,9 @@ PEANO      = examples/peano/peano
 SNAKE      = examples/snake/snake
 STARFIELD  = examples/starfield/starfield
 TILES      = examples/tiles/tiles
+WIREFRAME  = examples/wireframe/wireframe
 
-.PHONY: all clean julia mandelbrot peano snake starfield tiles
+.PHONY: all clean julia mandelbrot peano snake starfield tiles wireframe
 
 all: $(TARGET)
 
@@ -72,7 +73,10 @@ starfield: $(EGGX_LIB) $(TARGET)
 tiles: $(EGGX_LIB) $(TARGET)
 	$(FC) $(FFLAGS) $(LDFLAGS) -o $(TILES) $(TILES).f90 $(LDLIBS)
 
-examples: mandelbrot peano snake starfield tiles
+wireframe: $(EGGX_LIB) $(TARGET)
+	$(FC) $(FFLAGS) $(LDFLAGS) -o $(WIREFRAME) $(WIREFRAME).f90 $(LDLIBS)
+
+examples: julia mandelbrot peano snake starfield tiles wireframe
 
 clean:
 	cd $(EGGX_PATH) && make clean
@@ -85,3 +89,4 @@ clean:
 	if [ -e $(SNAKE) ]; then rm $(SNAKE); fi
 	if [ -e $(STARFIELD) ]; then rm $(STARFIELD); fi
 	if [ -e $(TILES) ]; then rm $(TILES); fi
+	if [ -e $(WIREFRAME) ]; then rm $(WIREFRAME); fi
