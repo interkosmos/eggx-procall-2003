@@ -10,8 +10,8 @@ program main
     implicit none
 
     character(len=*), parameter :: WIN_TITLE  = 'Fortran Mandelbrot'
-    integer,          parameter :: WIN_WIDTH  = 640
-    integer,          parameter :: WIN_HEIGHT = 480
+    integer,          parameter :: WIN_WIDTH  = 600
+    integer,          parameter :: WIN_HEIGHT = 600
     integer,          parameter :: MAX_ITER   = 80
     real,             parameter :: THRESHOLD  = 2.0
 

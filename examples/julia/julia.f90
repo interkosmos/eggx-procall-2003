@@ -12,7 +12,7 @@ program main
     character(len=*), parameter :: WIN_TITLE  = 'Fortran Julia Set'
     integer,          parameter :: WIN_WIDTH  = 800
     integer,          parameter :: WIN_HEIGHT = 600
-    integer,          parameter :: MAX_ITER   = 255
+    integer,          parameter :: MAX_ITER   = 256
 
     integer :: key
     integer :: j
@@ -38,20 +38,15 @@ program main
     call gcloseall()
 contains
     function julia(x, y, width, height, zoom, mx, my, c, max_iter)
-        integer, intent(in) :: x
-        integer, intent(in) :: y
-        integer, intent(in) :: width
-        integer, intent(in) :: height
-        real,    intent(in) :: zoom
-        real,    intent(in) :: mx
-        real,    intent(in) :: my
+        integer, intent(in) :: x, y, width, height
+        real,    intent(in) :: zoom, mx, my
         complex, intent(in) :: c
         integer, intent(in) :: max_iter
-        integer             :: julia
-        integer             :: i
+        integer             :: i, julia
         complex             :: z
 
         julia = 0
+
         z = cmplx(1.5 * (x - width / 2) / (0.5 * zoom * width) + mx, &
                   1.0 * (y - height / 2) / (0.5 * zoom * height) + my)
 
