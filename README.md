@@ -34,7 +34,7 @@ See directory `examples/` for some demo applications:
 * **julia** draws the Julia set.
 * **mandelbrot** draws the Mandelbrot set.
 * **peano** draws a [Peano curve](https://rosettacode.org/wiki/Peano_curve).
-* **snake** is a simple implementation of the snake game.
+* **snake** sprites-based implementation of the snake game.
 * **starfield** lets you fly through a starfield.
 * **tiles** draws text and a tileset to screen.
 * **wireframe** renders the 3D model of a Tie-Figher.
@@ -53,6 +53,9 @@ $ make <name>
 $ cd examples/<name>/
 $ ./<name>
 ```
+
+## Screen Shots
+![Screen Shots](screenshots.png)
 
 ## Documentation
 For the official documentation, see the PDF file
