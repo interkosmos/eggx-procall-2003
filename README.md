@@ -33,6 +33,7 @@ See directory `examples/` for some demo applications:
 
 * **julia** draws the Julia set.
 * **mandelbrot** draws the Mandelbrot set.
+* **munch** renders a graphical pattern.
 * **peano** draws a [Peano curve](https://rosettacode.org/wiki/Peano_curve).
 * **snake** sprites-based implementation of the snake game.
 * **starfield** lets you fly through a starfield.
