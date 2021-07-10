@@ -36,6 +36,7 @@ ARFLAGS    = rcs
 # Examples
 JULIA      = examples/julia/julia
 MANDELBROT = examples/mandelbrot/mandelbrot
+MUNCH      = examples/munch/munch
 PEANO      = examples/peano/peano
 SNAKE      = examples/snake/snake
 STARFIELD  = examples/starfield/starfield
@@ -61,6 +62,9 @@ julia: $(EGGX_LIB) $(TARGET)
 mandelbrot: $(EGGX_LIB) $(TARGET)
 	$(FC) $(FFLAGS) $(LDFLAGS) -o $(MANDELBROT) $(MANDELBROT).f90 $(LDLIBS)
 
+munch: $(EGGX_LIB) $(TARGET)
+	$(FC) $(FFLAGS) $(LDFLAGS) -o $(MUNCH) $(MUNCH).f90 $(LDLIBS)
+
 peano: $(EGGX_LIB) $(TARGET)
 	$(FC) $(FFLAGS) $(LDFLAGS) -o $(PEANO) $(PEANO).f90 $(LDLIBS)
 
@@ -85,6 +89,7 @@ clean:
 	if [ -e $(TARGET) ]; then rm $(TARGET); fi
 	if [ -e $(JULIA) ]; then rm $(JULIA); fi
 	if [ -e $(MANDELBROT) ]; then rm $(MANDELBROT); fi
+	if [ -e $(MUNCH) ]; then rm $(MUNCH); fi
 	if [ -e $(PEANO) ]; then rm $(PEANO); fi
 	if [ -e $(SNAKE) ]; then rm $(SNAKE); fi
 	if [ -e $(STARFIELD) ]; then rm $(STARFIELD); fi

@@ -212,7 +212,7 @@ module ui
     integer, parameter, public :: SPRITE_FOOD        = 15
     integer, parameter, public :: SPRITE_SURFACE     = 16
 
-    ! Sprite pixels (ARGB).
+    ! Sprite pixels (RGB).
     type, public :: sprite_type
         integer :: data(SPRITE_SIZE)
     end type sprite_type

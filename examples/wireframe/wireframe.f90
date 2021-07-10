@@ -132,7 +132,7 @@ program main
         call ggetch(key)
         if (key == PROCALL_KEY_ESCAPE) exit
 
-        y = y + rad(1.0) ! Rotate in y.
+        y = modulo(y + rad(1.0), rad(360.0)) ! Rotate in y.
         call update(vertices, points, WIN_WIDTH, WIN_HEIGHT, x, y, z, d)
         call render(win, points, edges)
         call msleep(20)

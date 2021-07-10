@@ -34,7 +34,7 @@ program main
     integer, parameter :: NROWS       = WIN_HEIGHT / TILE_HEIGHT
 
     ! Tile pixels (ARGB).
-    type tile_type
+    type :: tile_type
         character(len=1) :: data(TILE_SIZE)
     end type tile_type
 
