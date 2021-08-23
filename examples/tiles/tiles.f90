@@ -110,7 +110,7 @@ program main
                  len   = -1)
 
     call copylayer(win, 1, 0)   ! Copy layer to screen.
-    rc = eggx_winname(win, 'Finished!')
+    rc = eggx_winname(win, 'Finished!' // c_null_char)
 
     call ggetch(key)            ! Wait for input.
     call gcloseall()            ! Quit.
