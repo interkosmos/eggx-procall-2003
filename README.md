@@ -95,6 +95,7 @@ Open `doc/index.html` in a web browser.
 | circ1              | circ1                  |
 | clsc               | clsc                   |
 | clsx               | clsx                   |
+| copylayer          | copylayer              |
 | drawarc            | drawarc                |
 | drawarrow          | drawarrow              |
 | drawcirc           | drawcirc               |
@@ -155,6 +156,7 @@ Open `doc/index.html` in a web browser.
 | C function         | Fortran 2003 interface |
 |--------------------|------------------------|
 | gputimage          | eggx_gputimage         |
+| winname            | eggx_winname           |
 
 ## Licence
 GNU GPL (EGGX/ProCALL), ISC (EGXX/ProCALL 2003)
