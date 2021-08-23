@@ -24,7 +24,7 @@ if w % TILE_WIDTH != 0:
     exit()
 
 if h % TILE_HEIGHT != 0:
-    print("Image height is not multiple of {].".format(TILE_HEIGHT))
+    print("Image height is not multiple of {}.".format(TILE_HEIGHT))
     exit()
 
 print("Width:  {}".format(w))

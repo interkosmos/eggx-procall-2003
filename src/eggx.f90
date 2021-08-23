@@ -13,6 +13,7 @@ module eggx
     private
 
     public :: eggx_gputimage
+    public :: eggx_winname
 
     interface
         ! int eggx_gputimage(int win, double x, double y, unsigned char *buf, int width, int height, int mask)
@@ -27,5 +28,13 @@ module eggx
             integer(kind=c_int),    intent(in), value :: mask
             integer(kind=c_int)                       :: eggx_gputimage
         end function eggx_gputimage
+
+        ! int winname(int wn, const char *argsformat, ...)
+        function eggx_winname(nwin, argsformat) bind(c, name='eggx_winname')
+            import :: c_char, c_int
+            integer(kind=c_int),    intent(in), value :: nwin
+            character(kind=c_char), intent(in)        :: argsformat
+            integer(kind=c_int)                       :: eggx_winname
+        end function eggx_winname
     end interface
 end module eggx

@@ -254,6 +254,7 @@ module procall
     public :: circ1
     public :: clsc
     public :: clsx
+    public :: copylayer
     public :: drawarc
     public :: drawarrow
     public :: drawcirc

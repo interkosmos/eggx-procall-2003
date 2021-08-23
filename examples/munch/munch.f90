@@ -1,6 +1,6 @@
 ! munch.f90
 !
-! Munching squares, renders a graphical pattern where each pixel is colored by
+! Munching squares, renders a graphical pattern where each pixel is coloured by
 ! the value of x xor y from a colour palette.
 !
 ! Author:  Philipp Engel
