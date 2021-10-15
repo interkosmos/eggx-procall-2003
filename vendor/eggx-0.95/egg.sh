@@ -92,7 +92,7 @@ for i in $@ ; do
     if [ "$FIRST_CX" = "" ]; then
       FIRST_CX=$i
     fi
-  elif s_match "$i" "*.cc" ; then
+  elif s_match "$i" "*.f*" ; then
     COMPILER="FORTRAN"
     if [ "$FIRST_CX" = "" ]; then
       FIRST_CX=$i

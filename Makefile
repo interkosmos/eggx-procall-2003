@@ -24,7 +24,7 @@ FC         = gfortran
 AR         = ar
 PREFIX     = /usr/local
 
-EGGX_PATH  = vendor/eggx-0.94
+EGGX_PATH  = vendor/eggx-0.95
 EGGX_LIB   = $(EGGX_PATH)/libeggx.a
 TARGET     = libeggx2003.a
 
@@ -80,7 +80,7 @@ tiles: $(EGGX_LIB) $(TARGET)
 wireframe: $(EGGX_LIB) $(TARGET)
 	$(FC) $(FFLAGS) $(LDFLAGS) -o $(WIREFRAME) $(WIREFRAME).f90 $(LDLIBS)
 
-examples: julia mandelbrot peano snake starfield tiles wireframe
+examples: julia mandelbrot munch peano snake starfield tiles wireframe
 
 clean:
 	cd $(EGGX_PATH) && make clean

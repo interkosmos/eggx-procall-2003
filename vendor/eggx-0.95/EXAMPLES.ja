@@ -1,9 +1,9 @@
 /* -*- Mode: text ; Coding: euc-japan -*- */
-/* Time-stamp: <2010-03-07 23:52:45 cyamauch> */
+/* Time-stamp: <2021-08-28 04:13:22 cyamauch> */
 
 =============================================================================
                Easy and Gratifying Graphics library for X11
-                       EGGX / ProCALL  version 0.94
+                       EGGX / ProCALL  version 0.95
 =============================================================================
 
 ●examples_game ディレクトリ中のサンプルプログラム

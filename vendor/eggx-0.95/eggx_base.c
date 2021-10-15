@@ -1,8 +1,8 @@
 /* -*- Mode: C ; Coding: euc-japan -*- */
-/* Time-stamp: <2020-09-19 12:00:00 cyamauch> */
+/* Time-stamp: <2021-08-28 03:57:41 cyamauch> */
 
 /*
-  EGGX / ProCALL  version 0.94
+  EGGX / ProCALL  version 0.95
                    eggx_base.c
   究極の簡単さを目指して作成した，C ，FORTRAN 両用の
   X11グラフィックスライブラリ．
@@ -1380,7 +1380,7 @@ static void resize_Pc( int new_n )
     return;
 }
 
-static void get_size_hints( int xsize, int ysize,
+static void get_size_hints( int xsize, int ysize, Bool p_max_size,
 			    Bool fixed_size_window, XSizeHints *size_hints )
 {
     size_hints->flags = 0 ;
@@ -1388,9 +1388,11 @@ static void get_size_hints( int xsize, int ysize,
     if ( Pc_geometry != NULL ) {
 	int result, junk;
 
-	size_hints->flags |= PMaxSize ;
-	size_hints->max_width = xsize ;
-	size_hints->max_height = ysize ;
+	if ( p_max_size || fixed_size_window ) {
+	    size_hints->flags |= PMaxSize ;
+	    size_hints->max_width = xsize ;
+	    size_hints->max_height = ysize ;
+	}
 
 	if ( fixed_size_window ) {
 	    size_hints->flags |= PMinSize ;
@@ -1459,9 +1461,11 @@ static void get_size_hints( int xsize, int ysize,
 	    size_hints->min_height = ysize ;
 	}
 
-	size_hints->flags |= PMaxSize ;
-	size_hints->max_width = xsize ;
-	size_hints->max_height = ysize ;
+	if ( p_max_size || fixed_size_window ) {
+	    size_hints->flags |= PMaxSize ;
+	    size_hints->max_width = xsize ;
+	    size_hints->max_height = ysize ;
+	}
 
 	size_hints->flags |= USSize ;
 	size_hints->width = xsize ;
@@ -1486,7 +1490,7 @@ static void get_size_hints( int xsize, int ysize,
 void gopen_( integer *xsize, integer *ysize, integer *rtnum )
 {
     char int_1[] = "1" ;
-    Bool fixed_size_window;
+    Bool fixed_size_window, p_max_size;
     XGCValues gv ;
     XSetWindowAttributes att ;		/* 窓属性の変数 */
     XClassHint classHint ;
@@ -1566,8 +1570,10 @@ void gopen_( integer *xsize, integer *ysize, integer *rtnum )
 
     fixed_size_window = ( (Pc[num].attributes & SCROLLBAR_INTERFACE) == 0 ||
 	  (Pc[num].attributes & (OVERRIDE_REDIRECT | DOCK_APPLICATION)) != 0 );
-
-    get_size_hints( *xsize, *ysize, fixed_size_window, &size_hints );
+    p_max_size = ( (Pc[num].attributes & MAX_WINDOW_SIZE) != 0 );
+    
+    get_size_hints( *xsize, *ysize, p_max_size, fixed_size_window,
+		    &size_hints );
 
     if ( Pc_bgcolor == NULL ) {
 	Pc[num].bgcolor = get_color_pixel("#000000");
@@ -2116,7 +2122,7 @@ static Pixmap create_layer( int wn )
 
 void eggx_gresize( int wn, int xsize, int ysize )
 {
-    Bool fixed_size_window;
+    Bool fixed_size_window, p_max_size;
     XSizeHints size_hints = { 0 } ;
     XGCValues gv;
     int i;
@@ -2127,6 +2133,7 @@ void eggx_gresize( int wn, int xsize, int ysize )
 
     fixed_size_window = ( (Pc[wn].attributes & SCROLLBAR_INTERFACE) == 0 ||
 	   (Pc[wn].attributes & (OVERRIDE_REDIRECT | DOCK_APPLICATION)) != 0 );
+    p_max_size = ( (Pc[wn].attributes & MAX_WINDOW_SIZE) != 0 );
 
     wait_child();	/* imgsave中は待たせる */
     Ihflg = 1;		/* 割り込み禁止 */
@@ -2186,7 +2193,8 @@ void eggx_gresize( int wn, int xsize, int ysize )
 	Pc[wn].tmppix = None;
     }
 
-    get_size_hints( xsize, ysize, fixed_size_window, &size_hints );
+    get_size_hints( xsize, ysize, p_max_size, fixed_size_window,
+		    &size_hints );
 
     if ( fixed_size_window ) {
 	XSetWMNormalHints( Pc_dis, Pc[wn].win, &size_hints);

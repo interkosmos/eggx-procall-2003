@@ -1,5 +1,5 @@
 /* -*- Mode: text ; Coding: euc-japan -*- */
-/* Time-stamp: <2015-09-05 20:29:56 cyamauch> */
+/* Time-stamp: <2021-08-28 04:18:28 cyamauch> */
 
 	-- ChangeLog --
 
@@ -233,3 +233,7 @@
 	Cygwin/X 1.20.5.0 での問題を修正．コードの安全性に関する改良．
 	eggスクリプトの改良(-oを自動的に追加)．
 	(0.94 2020/9/19)
+
+	ウィンドウ属性 MAX_WINDOW_SIZE を追加．
+	eggスクリプトのバグ修正．Thanks to Uwe Beginn.
+	(0.95 2021/8/28)

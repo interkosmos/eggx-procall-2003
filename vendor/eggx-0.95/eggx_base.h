@@ -1,8 +1,8 @@
 /* -*- Mode: C ; Coding: euc-japan -*- */
-/* Time-stamp: <2020-09-19 12:00:00 cyamauch> */
+/* Time-stamp: <2021-08-28 03:57:03 cyamauch> */
 
 /*
-  EGGX / ProCALL  version 0.94
+  EGGX / ProCALL  version 0.95
                    eggx_base.h
 */
 
@@ -18,6 +18,7 @@ extern "C" {
 
 /* サポートするウィンドゥ属性 (1<<0は使わない) */
 #define SCROLLBAR_INTERFACE (1<<1)
+#define MAX_WINDOW_SIZE (1<<2)
 #define DOCK_APPLICATION (1<<3)
 #define OVERRIDE_REDIRECT (1<<4)
 #define BOTTOM_LEFT_ORIGIN (1<<7)
