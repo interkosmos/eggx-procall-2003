@@ -19,9 +19,9 @@ $ cd eggx-procall-2003/
 $ make
 ```
 
-The EGGX/ProCALL 0.94 source code is included in directory `vendor/eggx-0.94/`.
+The EGGX/ProCALL 0.95 source code is included in directory `vendor/eggx-0.95/`.
 
-Link your Fortran application with `vendor/eggx-0.94/libeggx.a`,
+Link your Fortran application with `vendor/eggx-0.95/libeggx.a`,
 `libeggx2003.a`, and `-lX11`, for instance:
 
 ```
@@ -60,7 +60,7 @@ $ ./<name>
 
 ## Documentation
 For the official documentation, see the PDF file
-[vendor/eggx-0.94/eggx_procall.pdf](vendor/eggx-0.94/eggx_procall.pdf).
+[vendor/eggx-0.95/eggx_procall.pdf](vendor/eggx-0.95/eggx_procall.pdf).
 
 Generate the source code documentation with
 [FORD](https://github.com/cmacmackin/ford). Add FORD with `pip`, for example:
